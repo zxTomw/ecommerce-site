@@ -4,6 +4,29 @@ import { collection, addDoc, getDocs, getDoc, doc } from "firebase/firestore";
 import { z } from "zod";
 
 export const Merchant = z.object({
+  id: z.string(),
+  name: z.string().min(1),
+  category: z.string().min(1),
+  price_cad: z.number().min(0),
+  description: z.string().optional(),
+  brand: z.string().optional(),
+  stock: z.number().min(0),
+  rating: z.number().min(0).max(5),
+  n_reviews: z.number().min(0),
+  reviews: z
+    .array(
+      z.object({
+        rating: z.number().min(0).max(5),
+        title: z.string().optional(),
+        content: z.string().optional(),
+      })
+    )
+    .optional(),
+  image_url: z.string().optional(),
+  date_created: z.string().date(),
+});
+
+export const MerchantInput = z.object({
   name: z.string().min(1),
   category: z.string().min(1),
   price_cad: z.number().min(0),
@@ -26,10 +49,11 @@ export const Merchant = z.object({
 });
 
 export type Merchant = z.infer<typeof Merchant>;
+export type MerchantInput = z.infer<typeof MerchantInput>;
 
 const collectionInstance = collection(db, "merchants");
 
-export async function createMerchant(merchant: Merchant) {
+export async function createMerchant(merchant: MerchantInput) {
   const validMerchant = Merchant.parse(merchant);
   const docRef = await addDoc(collectionInstance, validMerchant);
   console.log(

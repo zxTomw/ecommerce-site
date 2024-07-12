@@ -1,6 +1,7 @@
 import type { Merchant } from "./merchants";
 export const sampleMerchants: Merchant[] = [
   {
+    id: "dsaf090",
     name: "Wireless Bluetooth Headphones",
     category: "Electronics",
     price_cad: 49.99,
@@ -30,6 +31,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2022-01-15",
   },
   {
+    id: "adsa232",
     name: "Smart LED TV 50 inch",
     category: "Electronics",
     price_cad: 399.99,
@@ -59,6 +61,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2022-01-10",
   },
   {
+    id: "dsaf096",
     name: "Running Shoes",
     category: "Apparel",
     price_cad: 59.99,
@@ -88,6 +91,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2022-01-05",
   },
   {
+    id: "adsa234",
     name: "Stainless Steel Water Bottle",
     category: "Home & Kitchen",
     price_cad: 19.99,
@@ -117,6 +121,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2022-01-01",
   },
   {
+    id: "dsaf098",
     name: "Wooden Coffee Table",
     category: "Furniture",
     price_cad: 129.99,
@@ -146,6 +151,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2021-12-25",
   },
   {
+    id: "adsa236",
     name: "Cotton Bath Towels (Set of 6)",
     category: "Home & Kitchen",
     price_cad: 39.99,
@@ -175,6 +181,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2021-12-20",
   },
   {
+    id: "dsaf100",
     name: "Smartphone 128GB",
     category: "Electronics",
     price_cad: 699.99,
@@ -204,6 +211,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2021-12-15",
   },
   {
+    id: "adsa900",
     name: "Laptop Backpack",
     category: "Accessories",
     price_cad: 45.99,
@@ -233,6 +241,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2021-12-10",
   },
   {
+    id: "dsaf102",
     name: "Electric Kettle",
     category: "Home & Kitchen",
     price_cad: 29.99,
@@ -262,6 +271,7 @@ export const sampleMerchants: Merchant[] = [
     date_created: "2021-12-05",
   },
   {
+    id: "xxza000",
     name: "Yoga Mat",
     category: "Fitness",
     price_cad: 24.99,

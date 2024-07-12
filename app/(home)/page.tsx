@@ -18,7 +18,7 @@ const selections = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center max-w-full gap-5">
+    <div className="flex flex-col items-center justify-center max-w-full gap-5 px-5">
       <div className="flex flex-row items-center gap-2">
         <ComponentNoneIcon className="h-32 w-32 font-light" />
         <h1 className="text-8xl">NOLL</h1>
@@ -27,10 +27,10 @@ export default function Home() {
         (selection) =>
           selection.products.length > 0 && (
             <>
-              <h2 className="text-2xl font-semibold w-full pl-5">
+              <h2 className="text-2xl font-semibold w-full ">
                 {selection.title}
               </h2>
-              <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-5">
+              <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ">
                 {selection.products.map((product) => (
                   <MerchantCard key={product.name} merchant={product} />
                 ))}

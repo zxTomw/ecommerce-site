@@ -9,6 +9,7 @@ import { SearchBar } from "@/components/search-bar";
 import { ComponentNoneIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { UserNav } from "@/components/user-nav";
+import { MobileNav } from "@/components/mobile-nav";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -45,13 +46,15 @@ export default function RootLayout({
                 href="/"
                 className="text-xl mr-5 flex flex-row items-center gap-1"
               >
-                <ComponentNoneIcon className="h-5 w-5 " />
+                <ComponentNoneIcon className="h-5 w-5" />
               </Link>
               <MainNav className="hidden sm:block" />
-              <div className="flex-grow" />
-              <SearchBar className="w-1/2 max-w-96" />
-              <ModeToggle responsive />
-              <UserNav />
+              <div className="flex gap-8 sm:gap-5 items-center flex-grow justify-end">
+                <SearchBar className="w-1/2 max-w-96 flex-grow" />
+                <ModeToggle responsive />
+                <UserNav />
+                <MobileNav />
+              </div>
             </div>
             <main className="flex-grow p-5 max-w-full">{children}</main>
           </div>

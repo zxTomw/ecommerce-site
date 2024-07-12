@@ -37,7 +37,7 @@ export function SearchBar({ className, ...props }: ButtonProps) {
         variant="outline"
         onClick={() => setDialogueOpen(true)}
         className={cn(
-          "bg-slate-300 text-slate-500 bg-opacity-15 hidden lg:flex justify-start items-center gap-1",
+          "bg-slate-300 text-slate-500 bg-opacity-15 hidden  lg:flex justify-start items-center gap-1",
           className
         )}
       >
@@ -48,14 +48,10 @@ export function SearchBar({ className, ...props }: ButtonProps) {
         </kbd>{" "}
         to search
       </Button>
-      <Button
-        variant="ghost"
-        size="icon"
+      <MagnifyingGlassIcon
         onClick={() => setDialogueOpen(true)}
-        className={cn(" lg:hidden")}
-      >
-        <MagnifyingGlassIcon className="h-5 w-5" />
-      </Button>
+        className="h-4 w-4 lg:hidden"
+      />
 
       <CommandDialog
         open={dialogueOpen}
