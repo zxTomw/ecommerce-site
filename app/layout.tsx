@@ -8,6 +8,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { SearchBar } from "@/components/search-bar";
 import { ComponentNoneIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { UserNav } from "@/components/user-nav";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,18 +39,19 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col ">
-            <div className="sticky top-0 bg-opacity-60 dark:bg-opacity-60 dark:bg-slate-950 bg-white  backdrop-blur flex w-full h-16 items-center px-7 gap-5">
+          <div className="flex flex-col">
+            <div className="z-50 sticky top-0 bg-opacity-60 dark:bg-opacity-60 dark:bg-slate-950 bg-white  backdrop-blur flex w-full h-16 items-center px-7 gap-5">
               <Link
                 href="/"
-                className="text-xl  mr-5 flex flex-row items-center gap-1"
+                className="text-xl mr-5 flex flex-row items-center gap-1"
               >
                 <ComponentNoneIcon className="h-5 w-5 " />
               </Link>
-              <MainNav className="" />
+              <MainNav className="hidden sm:block" />
               <div className="flex-grow" />
               <SearchBar className="w-1/2 max-w-96" />
-              <ModeToggle />
+              <ModeToggle responsive />
+              <UserNav />
             </div>
             <main className="flex-grow p-5 max-w-full">{children}</main>
           </div>
