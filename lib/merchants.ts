@@ -3,15 +3,29 @@ import db from "./firebase/firestore";
 import { collection, addDoc, getDocs, getDoc, doc } from "firebase/firestore";
 import { z } from "zod";
 
-const Merchant = z.object({
+export const Merchant = z.object({
   name: z.string().min(1),
-  soldBy: z.string(),
+  category: z.string().min(1),
+  price_cad: z.number().min(0),
   description: z.string().optional(),
-  imageUrl: z.string(),
-  dateCreated: z.string().date(),
+  brand: z.string().optional(),
+  stock: z.number().min(0),
+  rating: z.number().min(0).max(5),
+  n_reviews: z.number().min(0),
+  reviews: z
+    .array(
+      z.object({
+        rating: z.number().min(0).max(5),
+        title: z.string().optional(),
+        content: z.string().optional(),
+      })
+    )
+    .optional(),
+  image_url: z.string().optional(),
+  date_created: z.string().date(),
 });
 
-type Merchant = z.infer<typeof Merchant>;
+export type Merchant = z.infer<typeof Merchant>;
 
 const collectionInstance = collection(db, "merchants");
 
