@@ -41,7 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex flex-col">
-            <div className="z-50 sticky top-0 bg-opacity-60 dark:bg-opacity-60 dark:bg-slate-950 bg-white  backdrop-blur flex w-full h-16 items-center px-7 gap-5">
+            <div className="z-50 sticky top-0 bg-opacity-60 dark:bg-opacity-60 dark:bg-slate-950 bg-white backdrop-blur flex w-full h-16 items-center px-7 gap-5">
               <Link
                 href="/"
                 className="text-xl mr-5 flex flex-row items-center gap-1"
