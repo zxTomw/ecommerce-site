@@ -8,11 +8,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getMerchants } from "@/lib/merchants";
 import { sampleMerchants } from "@/lib/sample-merchants";
 import { StarIcon, StarFilledIcon } from "@radix-ui/react-icons";
 
-export default function Page() {
-  const allProducts = sampleMerchants;
+export default async function Page() {
+  const allProducts = await getMerchants();
+  if (!allProducts) {
+    return <p>no available products</p>;
+  }
   return (
     <div className="flex flex-col items-center justify-center max-w-full gap-5">
       <h1 className="text-2xl font-semibold">All Products</h1>

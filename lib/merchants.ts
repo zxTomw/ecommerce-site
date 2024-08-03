@@ -2,59 +2,12 @@
 import db from "./firebase/firestore";
 import { collection, addDoc, getDocs, getDoc, doc } from "firebase/firestore";
 import { z } from "zod";
-
-export const Merchant = z.object({
-  id: z.string(),
-  name: z.string().min(1),
-  category: z.string().min(1),
-  price_cad: z.number().min(0),
-  description: z.string().optional(),
-  brand: z.string().optional(),
-  stock: z.number().min(0),
-  rating: z.number().min(0).max(5),
-  n_reviews: z.number().min(0),
-  reviews: z
-    .array(
-      z.object({
-        rating: z.number().min(0).max(5),
-        title: z.string().optional(),
-        content: z.string().optional(),
-      })
-    )
-    .optional(),
-  image_url: z.string().optional(),
-  date_created: z.string().date(),
-});
-
-export const MerchantInput = z.object({
-  name: z.string().min(1),
-  category: z.string().min(1),
-  price_cad: z.number().min(0),
-  description: z.string().optional(),
-  brand: z.string().optional(),
-  stock: z.number().min(0),
-  rating: z.number().min(0).max(5),
-  n_reviews: z.number().min(0),
-  reviews: z
-    .array(
-      z.object({
-        rating: z.number().min(0).max(5),
-        title: z.string().optional(),
-        content: z.string().optional(),
-      })
-    )
-    .optional(),
-  image_url: z.string().optional(),
-  date_created: z.string().date(),
-});
-
-export type Merchant = z.infer<typeof Merchant>;
-export type MerchantInput = z.infer<typeof MerchantInput>;
+import { Merchant, MerchantInput, MerchantInputSchema } from "./zod-schemas";
 
 const collectionInstance = collection(db, "merchants");
 
 export async function createMerchant(merchant: MerchantInput) {
-  const validMerchant = Merchant.parse(merchant);
+  const validMerchant = MerchantInputSchema.parse(merchant);
   const docRef = await addDoc(collectionInstance, validMerchant);
   console.log(
     "Document written with ID: ",
@@ -65,12 +18,15 @@ export async function createMerchant(merchant: MerchantInput) {
   return docRef.id;
 }
 
-export async function getMerchants() {
+export async function getMerchants(): Promise<Merchant[]> {
   const querySnapshot = await getDocs(collectionInstance);
-  const merchants = querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+  const merchants = querySnapshot.docs.map(
+    (doc) =>
+      ({
+        id: doc.id,
+        ...doc.data(),
+      } as Merchant)
+  );
   return merchants;
 }
 

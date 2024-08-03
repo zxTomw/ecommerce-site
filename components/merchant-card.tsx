@@ -1,4 +1,4 @@
-import { Merchant } from "@/lib/merchants";
+import { Merchant } from "@/lib/zod-schemas";
 import {
   Card,
   CardHeader,
@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { StarFilledIcon } from "@radix-ui/react-icons";
+import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -24,20 +24,27 @@ export function MerchantCard({
   return (
     <Card
       className={cn(
-        "w-full hover:shadow-xl transition-all ease-in-out",
+        "w-full hover:shadow-xl transition-all ease-in-out overflow-hidden",
         className
       )}
       {...props}
     >
       <Link href={`/products/${merchant.id}`}>
-        <CardHeader>
-          <Skeleton className="h-32 w-full" />
-        </CardHeader>
+        <Skeleton className="h-32 w-full  rounded-b-none mb-7" />
         <CardContent>
           <CardTitle>{merchant.name}</CardTitle>
           <p className="flex flex-row gap-1 items-center">
-            <StarFilledIcon className="h-4 w-4" />{" "}
-            {`${merchant.rating} (${merchant.n_reviews})`}
+            {merchant.rating !== undefined ? (
+              <>
+                <StarFilledIcon className="h-4 w-4" />{" "}
+                {`${merchant.rating} (${merchant.n_reviews})`}
+              </>
+            ) : (
+              <>
+                <StarIcon className="h-4 w-4" />
+                No reviews
+              </>
+            )}
           </p>
         </CardContent>
       </Link>
